@@ -6,4 +6,19 @@ const withPWA = require('next-pwa')({
 module.exports = withPWA({
   reactStrictMode: true,
   swcMinify: true,
+  modularizeImports: {
+    '@mui/icons-material': {
+      transform: '@mui/icons-material/{{member}}',
+    },
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'source.unsplash.com',
+        port: '',
+        pathname: '/random',
+      },
+    ],
+  },
 });

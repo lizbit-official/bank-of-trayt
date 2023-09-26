@@ -1,6 +1,16 @@
-'use client';
 import React from 'react';
+import Box from '@mui/material/Box';
+import ThemeRegistry from '@components/ThemeRegistry/ThemeRegistry';
+import AppHeader from '@components/layout/AppHeader';
+import AppSidebar from '@components/layout/AppSidebar';
 import '../styles/global.css';
+
+export const metadata = () => ({
+  title: 'Bank of Trayt',
+  description: 'Take-home challenge for Trayt Health',
+});
+
+const SIDEBAR_WIDTH = 240;
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -13,8 +23,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <meta name="application-name" content="Bank of Trayt<" />
         <meta name="description" content="Take-home challenge for Trayt Health" />
 
-        <meta name="theme-color" content="#1c6080" />
         <meta id="view" name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover" />
+        <meta name="theme-color" content="#1c6080" />
 
         <meta name="apple-mobile-web-app-title" content="Bank of Trayt<" />
         <meta name="application-name" content="Bank of Trayt<" />
@@ -40,9 +50,22 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <meta property="og:site_name" content="Bank of Trayt<" />
       </head>
       <body>
-        <main>
-          {children}
-        </main>
+        <ThemeRegistry>
+          <AppHeader />
+          <AppSidebar width={SIDEBAR_WIDTH} />
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              bgcolor: 'background.default',
+              ml: `${SIDEBAR_WIDTH}px`,
+              mt: ['48px', '56px', '64px'],
+              p: 3,
+            }}
+          >
+            {children}
+          </Box>
+        </ThemeRegistry>
       </body>
     </html>
   );
