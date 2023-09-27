@@ -2,6 +2,9 @@
 
 Take-home challenge for Trayt Health comprising a basic layout, several pages, and an interest calculator.
 
+Built in Next.js, using the app router, this project is set up for static rendering of initial pages and 
+in support of a gradual transition to React Server Components.
+
 ## Dependencies
 - node.js v18+
 
