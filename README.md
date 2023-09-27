@@ -5,12 +5,21 @@ Take-home challenge for Trayt Health comprising a basic layout, several pages, a
 ## Dependencies
 - node.js v18+
 
-## Building 
+## Building
+
+When running, the app is served on port 3000.
+
 ### Production
 ```
 npm install
 npm run build
 npm run start  ; to run nodejs server
+```
+
+#### Docker
+```
+docker build -t bank-of-trayt .
+docker run -d bank-of-trayt
 ```
 
 ### Development
