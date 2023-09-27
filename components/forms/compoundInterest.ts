@@ -1,4 +1,4 @@
-export type DepositFrequency = 'once' | 'twice';
+import type { DepositFrequency } from '@components/forms/forms.types';
 
 /**
  * Calculates the future value of a series of deposits with variable interest rates.

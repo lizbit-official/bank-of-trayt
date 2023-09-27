@@ -1,3 +1,5 @@
+export type DepositFrequency = 'once' | 'twice';
+
 export interface DirectDepositEnrollmentFormFields {
   accountNumber: string;
   routingNumber: string;
