@@ -18,7 +18,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <meta name="application-name" content="Bank of Trayt<" />
         <meta name="description" content="Take-home challenge for Trayt Health" />
 
-        <meta id="view" name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover" />
+        <meta
+          id="view"
+          name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover"
+        />
         <meta name="theme-color" content="#1c6080" />
       </head>
       <body>

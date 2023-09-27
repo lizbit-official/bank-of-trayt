@@ -63,7 +63,7 @@ const DirectDepositEnrollmentForm = () => {
           required: 'Account number is required',
           pattern: {
             value: /^\d{8,17}$/,
-            message: 'Account number must be between 8 and 17 digits'
+            message: 'Account number must be between 8 and 17 digits',
           },
         }}
         render={({ field }) => (

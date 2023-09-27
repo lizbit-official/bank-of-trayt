@@ -14,7 +14,7 @@ describe('<AppSidebar />', () => {
       { text: 'About Us', href: '/about', icon: 'ChecklistIcon' },
     ];
 
-    links.forEach(({ text, href, icon }) => {
+    links.forEach(({ text, href }) => {
       const linkItem = getByText(text).closest('a');
       expect(linkItem).toHaveAttribute('href', href);
 
