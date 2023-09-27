@@ -1,5 +1,10 @@
 # Bank of Trayt
 
+Take-home challenge for Trayt Health comprising a basic layout, several pages, and an interest calculator.
+
+## Dependencies
+- node.js v18+
+
 ## Building 
 ### Production
 ```
