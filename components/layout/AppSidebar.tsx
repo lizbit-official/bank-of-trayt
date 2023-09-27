@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -10,11 +9,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import HomeIcon from '@mui/icons-material/Home';
 import StarIcon from '@mui/icons-material/Star';
 import ChecklistIcon from '@mui/icons-material/Checklist';
-import SettingsIcon from '@mui/icons-material/Settings';
-import SupportIcon from '@mui/icons-material/Support';
-import LogoutIcon from '@mui/icons-material/Logout';
 
-const LINKS = [
+const links = [
   { text: 'Personal', href: '/', icon: HomeIcon },
   { text: 'Small Business', href: '/small-business', icon: StarIcon },
   { text: 'Wealth Management', href: '/wealth-management', icon: ChecklistIcon },
@@ -22,17 +18,11 @@ const LINKS = [
   { text: 'About Us', href: '/about', icon: ChecklistIcon },
 ];
 
-const PLACEHOLDER_LINKS = [
-  { text: 'Settings', icon: SettingsIcon },
-  { text: 'Support', icon: SupportIcon },
-  { text: 'Logout', icon: LogoutIcon },
-];
-
 interface DrawerAppBarProps {
   width: number;
 }
 
-const DrawerAppBar = ({ width }: DrawerAppBarProps) => {
+const AppSidebar = ({ width }: DrawerAppBarProps) => {
   return (
     <Drawer
       sx={{
@@ -51,22 +41,9 @@ const DrawerAppBar = ({ width }: DrawerAppBarProps) => {
     >
       <Divider />
       <List>
-        {LINKS.map(({ text, href, icon: Icon }) => (
+        {links.map(({ text, href, icon: Icon }) => (
           <ListItem key={href} disablePadding>
             <ListItemButton component={Link} href={href}>
-              <ListItemIcon>
-                <Icon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider sx={{ mt: 'auto' }} />
-      <List>
-        {PLACEHOLDER_LINKS.map(({ text, icon: Icon }) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
               <ListItemIcon>
                 <Icon />
               </ListItemIcon>
@@ -79,4 +56,4 @@ const DrawerAppBar = ({ width }: DrawerAppBarProps) => {
   );
 };
 
-export default DrawerAppBar;
+export default AppSidebar;

@@ -129,8 +129,7 @@
         { "pattern": "@app/**", "group": "internal" },
         { "pattern": "@components/**", "group": "internal" },
         { "pattern": "@hooks/**", "group": "internal" },
-        { "pattern": "@styles/**", "group": "internal" },
-        { "pattern": "@test-utils/**", "group": "internal" }
+        { "pattern": "@styles/**", "group": "internal" }
       ],
       "pathGroupsExcludedImportTypes": ["internal"]
     }],
@@ -204,8 +203,7 @@
           ["@app", "./app"],
           ["@components", "./components"],
           ["@hooks", "./hooks"],
-          ["@styles", "./styles"],
-          ["@test-utils", "./test-utils"]
+          ["@styles", "./styles"]
         ],
         "extensions": [".ts", ".tsx", ".js", ".jsx"]
       }

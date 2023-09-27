@@ -1,4 +1,8 @@
 @import "../styles/normalize.css";
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
 
 * {
   box-sizing: border-box;
@@ -23,5 +27,5 @@ html,
 body,
 #root {
   min-height: 100%;
-  font-size: 14px;
+  font-size: 16px;
 }

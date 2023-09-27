@@ -26,8 +26,7 @@
       "@app/*": ["./app/*"],
       "@components/*": ["./components/*"],
       "@hooks/*": ["./hooks/*"],
-      "@styles/*": ["./styles/*"],
-      "@test-utils/*": ["./test-utils/*"]
+      "@styles/*": ["./styles/*"]
     },
     "plugins": [
       {
