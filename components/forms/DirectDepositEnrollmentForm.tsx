@@ -124,9 +124,6 @@ const DirectDepositEnrollmentForm = () => {
             helperText={errors?.amount?.message ?? ''}
             InputProps={{
               startAdornment: <InputAdornment position="start">$</InputAdornment>,
-              // slots: {
-              //   input: TraytTextInput,
-              // },
             }}
           />
         )}
