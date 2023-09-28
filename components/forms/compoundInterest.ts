@@ -20,38 +20,29 @@ export const futureValueWithVariableInterest = (
   endDate: Date,
   depositFrequency: DepositFrequency
 ): number => {
-  let monthlyInterestRate = annualInterestRate / 12 / 100;
+  const start = new Date();
+  let balance = 0;
+  const current = new Date(start);
+  const dailyRate = annualInterestRate / 365 / 100;
+  const dailyRateAfter36Months = annualInterestRateAfter36Months / 365 / 100;
 
-  const startDate = new Date(); // Assuming deposits start from the current date
-  const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + endDate.getMonth() - startDate.getMonth();
+  while (current <= endDate) {
+    // Compound interest daily
+    const monthsElapsed = (current.getFullYear() - start.getFullYear()) * 12 + current.getMonth() - start.getMonth();
+    const currentDailyRate = monthsElapsed < 36 ? dailyRate : dailyRateAfter36Months;
+    balance += balance * currentDailyRate;
 
-  let futureValue = 0;
-
-  for (let i = 0; i <= months; i++) {
-    const currentDate = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
-    const nextDate = new Date(startDate.getFullYear(), startDate.getMonth() + i + 1, 1);
-
-    if (i === 36) {
-      // Change the interest rate after 36 months
-      monthlyInterestRate = annualInterestRateAfter36Months / 12 / 100;
+    // Add deposits
+    if (depositFrequency === 'once' && current.getDate() === 1) {
+      balance += depositAmount;
+    }
+    else if (depositFrequency === 'twice' && (current.getDate() === 1 || current.getDate() === 15)) {
+      balance += depositAmount;
     }
 
-    // Deposit on the 1st
-    if (endDate >= currentDate) {
-      futureValue += depositAmount;
-      futureValue *= (1 + monthlyInterestRate);
-    }
-
-    // Deposit on the 15th if depositing twice a month
-    if (
-      depositFrequency === 'twice'
-      && endDate >= new Date(currentDate.getFullYear(), currentDate.getMonth(), 15)
-      && startDate < nextDate
-    ) {
-      futureValue += depositAmount;
-      futureValue *= (1 + monthlyInterestRate);
-    }
+    // Move to the next day
+    current.setDate(current.getDate() + 1);
   }
 
-  return futureValue;
+  return balance;
 };

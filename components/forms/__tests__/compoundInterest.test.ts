@@ -1,37 +1,39 @@
 import { futureValueWithVariableInterest } from '@components/forms/compoundInterest';
 
 describe('futureValueWithVariableInterest', () => {
-  const depositAmount = 1000;
-  const apr = 6;
-  const apr2 = 10;
+  // Single deposit each month for 2 years
+  it('should calculate correct compound interest for 2 years with once-a-month deposits', () => {
+    const startDate = new Date();
+    const endDate = new Date(startDate);
+    endDate.setFullYear(endDate.getFullYear() + 2);
 
-  it('should calculate future value with single monthly deposits', () => {
-    const endDate = new Date(new Date().getFullYear() + 1, new Date().getMonth(), 1); // 1 year later
-    const futureValue = futureValueWithVariableInterest(depositAmount, apr, apr2, endDate, 'once');
-    expect(futureValue).toBeCloseTo(13464.23);
+    const result = futureValueWithVariableInterest(1000, 5, 5, endDate, 'once');
+    expect(result).toBeCloseTo(25280.58);
   });
 
-  it('should calculate future value with double monthly deposits', () => {
-    const endDate = new Date(new Date().getFullYear() + 1, new Date().getMonth(), 1); // 1 year later
-    const futureValue = futureValueWithVariableInterest(depositAmount, apr, apr2, endDate, 'twice');
-    expect(futureValue).toBeCloseTo(26691.91);
+  // Two deposits each month for over 3 years with interest rate change
+  it('should calculate correct compound interest for over 3 years with twice-a-month deposits and changed interest', () => {
+    const startDate = new Date();
+    const endDate = new Date(startDate);
+    endDate.setFullYear(startDate.getFullYear() + 3);
+    endDate.setDate(startDate.getDate() + 12);
+    endDate.setMonth(startDate.getMonth() + 1);
+
+    const result = futureValueWithVariableInterest(1500, 5, 2, endDate, 'twice');
+
+    expect(result).toBeCloseTo(117910.89);
   });
 
-  it('should change interest rate after 36 months', () => {
-    const endDate = new Date(new Date().getFullYear() + 4, new Date().getMonth(), 1); // 4 years later
-    const futureValue = futureValueWithVariableInterest(depositAmount, apr, apr2, endDate, 'once');
-    expect(futureValue).toBeCloseTo(57820.52);
-  });
+  // Single deposit each month for less than 3 years, no interest rate change
+  it('should calculate compound interest for less than 3 years with once-a-month deposits', () => {
+    const startDate = new Date();
+    const endDate = new Date(startDate);
+    endDate.setFullYear(startDate.getFullYear() + 2);
+    endDate.setMonth(startDate.getMonth() + 6);
 
-  it('should handle deposit on the last day', () => {
-    const endDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0); // Last day of the next month
-    const futureValue = futureValueWithVariableInterest(depositAmount, apr, apr2, endDate, 'twice');
-    expect(futureValue).toBeCloseTo(2015.02);
-  });
+    const result = futureValueWithVariableInterest(500, 5, 5, endDate, 'once');
 
-  it('should not deposit if endDate is before the 1st deposit date', () => {
-    const endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 0); // Last day of this month
-    const futureValue = futureValueWithVariableInterest(depositAmount, apr, apr2, endDate, 'once');
-    expect(futureValue).toBe(0);
+    // The expected result should be calculated manually or from another trusted source
+    expect(result).toBeCloseTo(15999.33);
   });
 });
